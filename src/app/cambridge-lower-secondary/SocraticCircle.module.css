@@ -1,0 +1,56 @@
+.featureCard {
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  padding: 40px;
+  background: transparent;
+  color: #0a0a0a;
+  transition: all 0.4s ease-in-out;
+  border-radius: 20px;
+  height: 100%;
+}
+
+/* default -> description hidden */
+.featureDesc {
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+/* ACTIVE (default ya hover) */
+.featureCard:hover,
+.featureCard.active {
+  background: #0d1b2a !important;
+  color: #ffffff !important;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
+}
+
+/* icon hover/active effect */
+.featureCard:hover .featureIcon,
+.featureCard.active .featureIcon {
+  filter: brightness(0) invert(1);
+}
+
+/* description visible only on hover or default active */
+.featureCard:hover .featureDesc,
+.featureCard.active .featureDesc {
+  display: block;
+  color: #fff !important;
+}
+.yell{
+  background-color: #FCFFF8;
+    padding: 40px 20px;
+    border-radius: 20px;
+    height: 450px;
+    margin-bottom: 120px;
+}
+/* .heard{
+  margin: 20px 0px !important;
+} */
+@media (max-width: 768px) {
+  .yell{
+    height: auto;
+    margin-bottom: 50px;
+}
+}

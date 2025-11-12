@@ -1,0 +1,153 @@
+.targetSection {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  max-height: 500px;
+  width: 90vw;
+  height: 90vw;
+}
+
+/* Circles */
+.ring {
+  position: absolute;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Outer Circle (Blur + Semi-Transparent) */
+.ring.create {
+  background-color: #AEDAC1; /* solid */
+}
+.ring.evaluate {
+  background-color: rgba(177, 221, 204, 0.66);
+}
+.ring.analyze {
+  background-color: rgba(177, 221, 204, 0.66);
+}
+.ring.apply {
+  background-color: rgba(187, 222, 200, 0.24);
+}
+.ring.understand {
+  background-color: #C5E5D5;
+}
+.ring.remember {
+  background-color: rgba(233, 241, 239, 0.46);
+}
+.targetSection {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  max-height: 500px;
+  width: 90vw;
+  height: 90vw;
+}
+
+/* Base ring style */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Outer ring: inner blur */
+.ring.outer {
+  filter: blur(10px);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.ring:hover {
+  transform: scale(1.02);
+}
+
+/* SVG overlay */
+.svgOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ringText {
+  font-family: "Poppins", sans-serif;
+  fill: #000;
+  dominant-baseline: hanging;
+}
+
+/* Optional media query */
+@media (min-width: 768px) {
+  .targetSection {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+/* Outer background circle */
+.ring.outer {
+  background-color: rgba(215, 236, 229, 0.6);
+  filter: blur(9.4px);
+}
+
+/* Middle (center) circle is white */
+.ring.center {
+  background-color: white;
+}
+
+/* Optional hover feedback */
+.ring:hover {
+  transform: scale(1.01);
+}
+
+/* SVG text overlay */
+.svgOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* so clicks go to .ring below */
+}
+.ring.outer {
+  background-color: rgba(215, 236, 229, 0.6); /* base soft greenish */
+  filter: blur(15px); /* blur ko zyada strong kiya */
+  animation: outerPulse 3s ease-in-out infinite; /* soft pulsing animation */
+}
+
+/* Pulse effect animation */
+@keyframes outerPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+    filter: blur(15px);
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.85;
+    filter: blur(18px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+    filter: blur(15px);
+  }
+}
+/* Text styling */
+.ringText {
+  font-family: "Poppins", sans-serif;
+  fill: #000;
+  dominant-baseline: hanging;
+}
+
+@media (min-width: 768px) {
+  .targetSection {
+    width: 500px;
+    height: 500px;
+  }
+}

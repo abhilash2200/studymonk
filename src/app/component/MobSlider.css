@@ -1,0 +1,115 @@
+/* Base slider styles */
+.slider-container {
+  position: relative;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  z-index: 1;
+}
+
+/* Slide styles */
+.swiper-slide {
+  background: #F4F4F4;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.swiper-slide:hover {
+  transform: translateY(-5px);
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.slide-text {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.slide-text h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #001F3F;
+  font-family: "Gilroy-Bold";
+}
+
+.slide-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Navigation buttons */
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.slider-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.slider-button:hover {
+  background: #555;
+}
+
+/* Pagination styles */
+.swiper-pagination {
+  position: relative; /* slider ke neeche set */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 0 10px;
+  }
+
+  .slide-image {
+    height: 160px;
+  }
+
+  .slider-button {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
