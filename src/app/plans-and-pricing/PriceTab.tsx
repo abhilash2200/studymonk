@@ -139,7 +139,7 @@ export default function StagePricingDetailed({
         </div>
 
         <Row className="align-items-stretch">
-          <Col md={6} className="order-1 order-md-0">
+          <Col md={6}>
             <div className="gr-jg">
               <div className="text-center">
                 <h3 id="pyhs">The Ultimate Advantage Package</h3>
@@ -189,7 +189,7 @@ export default function StagePricingDetailed({
             </div>
           </Col>
 
-          <Col md={6} className="order-0 order-md-1">
+          <Col md={6}>
             <div className="secd-bcx text-center">
               <h3 id="pyhs" className="mb-2" style={{ minHeight: "60px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {getHeading()}

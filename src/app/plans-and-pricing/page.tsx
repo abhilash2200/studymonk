@@ -283,7 +283,7 @@ export default function Page() {
 
 
 
-            <section id="philosophy" className="position-relative mb ">
+            <section id="philosophy" className="position-relative mb d-none d-md-block">
                 <div className="container">
 
 
@@ -327,6 +327,16 @@ export default function Page() {
                     <div className="bg-blues">
                         <div className="icon-hg">
                             <div className="row">
+                                <div className="col-lg-4 col-md-4 col-12 d-block d-md-none">
+                                    <div className="b-ocon-box px-0">
+                                        <h2 className="mb-3">
+                                            More Than Just Tutoring. A Complete Support System.
+                                        </h2>
+                                        <p className="bxf w-100">
+                                            Every Study Monks plan is all-inclusive, providing your child with a comprehensive academic support system designed for success.
+                                        </p>
+                                    </div>
+                                </div>
                                 <div className="col-lg-4 col-md-4 col-12">
                                     <div className="b-ocon-box ">
                                         <Image src="/assets/img/admin.png" alt=""
