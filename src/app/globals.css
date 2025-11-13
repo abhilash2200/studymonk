@@ -109,6 +109,17 @@ h3 {
   height: 20px;
 }
 
+.mob-banner {
+  margin-top: 80px !important;
+}
+
+.mob-banner h2 {
+  font-size: 24px !important;
+  font-family: "Gilroy-Bold" !important;
+  margin-bottom: 20px !important;
+  text-align: left !important;
+}
+
 .grefd {
   color: #244653;
 }
@@ -4917,6 +4928,19 @@ padding: 100px 0px 20px 0px;
   @media (max-width: 768px) {
     .popup-form-right {
       flex: 1 1 100% !important;
+    }
+    .btn-primarys {
+      background-color: transparent !important;
+      padding: 10px 15px !important;
+      border-radius: 20px !important;
+      border: 1px solid #2F2F2F !important;
+      color: #2F2F2F !important;
+      font-family: "Poppins", sans-serif !important;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transform-origin: center;
+      text-transform: capitalize !important;
+      border: none;
+      font-size: 16px !important;
     }
 
     .tivh {

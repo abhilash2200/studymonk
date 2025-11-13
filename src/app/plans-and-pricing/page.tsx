@@ -49,15 +49,15 @@ export default function Page() {
 
             <section className="price-banner">
                 <div className="container-fluid">
-                    <div className="row flex-column-reverse flex-md-row">
+                    <div className="row flex-column-reverse flex-md-row d-none d-md-flex">
                         <div className="col-lg-7 col-md-7 col-12 order-md-first">
                             <div className="price-txt">
                                 <h2>The Perfect Balance of Personal Attention
                                     and Peer Collaboration.</h2>
-                                <p className="d-none d-lg-flex">
+                                <p className="">
                                     Most parents believe the goal of tutoring is to master a subject. But the true challenge of a Cambridge education lies deeper—it&apos;s in learning to analyze, debate, and defend a perspective with confidence. That is the deeper value your investment delivers.
                                 </p>
-                                <p className="d-none d-lg-flex">
+                                <p className="">
                                     Give your child the confidence to excel with expert-led online Micro Classes in English, Math, and Science, designed for focused, small-group learning.
                                 </p>
                                 <a href="#price"><Button className="btn-primarys" id="pr"
@@ -80,6 +80,53 @@ export default function Page() {
                                 />
                             </div>
                         </div>
+                    </div>
+                    <div className="row d-block d-md-none">
+                    <div
+                        className="mob-banner d-flex d-md-none align-items-center"
+                        style={{
+                            backgroundImage: "url('/assets/img/peer-mob.png')",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            // padding: "40px 20px",
+                            height: "400px",
+                            position: "relative",
+                            
+                        }}
+                    >
+                        <div
+                            style={{
+                                position: "absolute",
+                                bottom: "50px",
+                                left: "10px",
+                                right: "20px",
+                                color: "#fff",
+                                zIndex: 2,
+                                textShadow: "0 2px 10px rgba(0,0,0,0.2)"
+                            }}
+                        >
+                            <h2 style={{ fontSize: "20px", fontWeight: "700", lineHeight: "1.3" }}>
+                                The Perfect <br />Balance of <br />Personal <br />Attention <br />and Peer <br />Collaboration.
+                            </h2>
+
+                            <a href="#price">
+                                <Button
+                                    className="btn-primarys"
+                                    id="pr"
+                                    type="button"
+                                    style={{ marginTop: "12px" }}
+                                >
+                                    Explore Plans{" "}
+                                    <Image
+                                        src="/assets/img/arrow-down.png"
+                                        alt="Right arrow"
+                                        width={25}
+                                        height={25}
+                                    />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </section>
