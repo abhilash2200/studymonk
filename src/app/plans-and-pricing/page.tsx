@@ -102,7 +102,7 @@ export default function Page() {
                                 right: "20px",
                                 color: "#fff",
                                 zIndex: 2,
-                                textShadow: "0 2px 10px rgba(0,0,0,0.2)"
+                                // textShadow: "0 2px 10px rgba(0,0,0,0.2)"
                             }}
                         >
                             <h2 style={{ fontSize: "20px", fontWeight: "700", lineHeight: "1.3" }}>
