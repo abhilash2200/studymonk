@@ -47,10 +47,8 @@ export default function StagePricingDetailed({
   const subjectCount = selectedSubjects.length;
 
   // Calculate final total based on selected subjects
-  let finalTotal = 0;
-  if (subjectCount === 1) finalTotal = stageInfo.single;
-  if (subjectCount === 2) finalTotal = stageInfo.combo2;
-  if (subjectCount === 3) finalTotal = stageInfo.combo3;
+  // Each item costs the same: subjectCount × single price
+  const finalTotal = subjectCount * stageInfo.single;
 
   // Calculate individual subject price (single price per subject)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,8 +56,9 @@ export default function StagePricingDetailed({
     return stageInfo.single;
   };
 
-  // Calculate discount amount and percentage
-  const calculateDiscount = () => {
+  // Calculate discount for left side (Ultimate Advantage Package)
+  // Right side uses simple multiplication, so no discount calculation needed
+  const calculateLeftSideDiscount = () => {
     if (subjectCount === 0) return { amount: 0, percent: 0 };
 
     const individualTotal = subjectCount * stageInfo.single;
@@ -81,13 +80,13 @@ export default function StagePricingDetailed({
     return { amount: discountAmount, percent: discountPercent };
   };
 
-  const { amount: discountAmount, percent: discountPercent } = calculateDiscount();
+  const { amount: discountAmount, percent: discountPercent } = calculateLeftSideDiscount();
 
-  // Calculate Ultimate Advantage Package pricing (all 3 subjects)
-  const ultimatePackagePrice = stageInfo.combo3;
-  const ultimatePackageIndividualTotal = 3 * stageInfo.single;
-  const ultimatePackageMonthlySavings = ultimatePackageIndividualTotal - ultimatePackagePrice;
-  const ultimatePackageYearlySavings = ultimatePackageMonthlySavings * 12;
+  // Calculate left side price from static data based on selected subjects
+  let leftSidePrice = 0;
+  if (subjectCount === 1) leftSidePrice = stageInfo.single;
+  else if (subjectCount === 2) leftSidePrice = stageInfo.combo2;
+  else if (subjectCount === 3) leftSidePrice = stageInfo.combo3;
 
   const getHeading = () => {
     if (subjectCount === 1) return "Single Subject Plan (Monthly Fee)";
@@ -170,20 +169,47 @@ export default function StagePricingDetailed({
                 </div>
 
                 <div className="twelvex my-3">
-                  <p>Monthly Price</p>
+                  <div className="d-flex align-items-center justify-content-center gap-2 mb-2">
+                    <p className="mb-0">You Pay Only</p>
+                  </div>
                   <h3 id="pyhs" className="mb-2">
-                    ₹{formatINR(ultimatePackagePrice)}
+                    {subjectCount > 0 ? `₹${formatINR(leftSidePrice)}` : "—"}
                   </h3>
-                  <p>
-                    You save ₹{formatINR(ultimatePackageMonthlySavings)} every month (that&apos;s{" "}
-                    <span className="text-success">₹{formatINR(ultimatePackageYearlySavings)}</span> a year!)
-                  </p>
+                  <div
+                    style={{
+                      height: "44px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        padding: "6px 16px",
+                        color: "#198754",
+                        opacity: subjectCount > 1 && discountAmount > 0 ? 1 : 0,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    >
+                      <div style={{ fontSize: 14 }}>
+                        You save <strong>{discountPercent}%</strong> on
+                        this bundle
+                      </div>
+                      <div
+                        style={{ fontWeight: 700, color: "#01356C", minWidth: "80px", textAlign: "right" }}
+                      >
+                        - ₹{formatINR(discountAmount)}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <button
                   className="btn-frd mt-3"
                   onClick={handleClickOpen}
                 >
-                  Claim Your Child’s 7 Day Free Trial
+                  Start your 7 day free trial
                 </button>
               </div>
             </div>
@@ -261,7 +287,7 @@ export default function StagePricingDetailed({
                   className="d-flex justify-content-between align-items-center"
                   style={{ padding: "0px 16px" }}
                 >
-                  <div style={{ color: "#6c757d" }}>Your monthly plan</div>
+                  <div style={{ color: "#6c757d" }}>Your Monthly Plan</div>
 
                   <div
                     style={{
@@ -278,35 +304,7 @@ export default function StagePricingDetailed({
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    height: "44px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                  }}
-                >
-                  <div
-                    className="d-flex justify-content-between align-items-center"
-                    style={{
-                      padding: "6px 16px",
-                      color: "#198754",
-                      opacity: subjectCount === 0 ? 0 : 1,
-                      transition: "opacity 0.3s ease",
-                    }}
-                  >
-                    <div style={{ fontSize: 14 }}>
-                      You got <strong>{discountPercent}%</strong> savings on
-                      this bundle
-                    </div>
-                    <div
-                      style={{ fontWeight: 700, color: "#01356C", minWidth: "80px", textAlign: "right" }}
-                    >
-                      - ₹{formatINR(discountAmount)}
-                    </div>
-                  </div>
-                </div>
+
 
                 <div style={{ height: "13px", overflow: "hidden" }}>
                   <hr
@@ -324,7 +322,7 @@ export default function StagePricingDetailed({
                     className="mentr"
                     onClick={handleClickOpen}
                   >
-                    Claim Your Child’s 7 Day Free Trial
+                    Start your 7 day free trial
                   </button>
                 </div>
               </div>
