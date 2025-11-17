@@ -46,7 +46,13 @@ export default function StagePricingDetailed({
 
   const subjectCount = selectedSubjects.length;
 
-  // Calculate final total based on selected subjects
+  // Left side: Always show static combo3 price (Ultimate Advantage Package)
+  const ultimatePackagePrice = stageInfo.combo3;
+  const ultimatePackageIndividualTotal = 3 * stageInfo.single;
+  const ultimatePackageMonthlySavings = ultimatePackageIndividualTotal - ultimatePackagePrice;
+  const ultimatePackageYearlySavings = ultimatePackageMonthlySavings * 12;
+
+  // Right side: Calculate total based on selected subjects
   // Each item costs the same: subjectCount × single price
   const finalTotal = subjectCount * stageInfo.single;
 
@@ -56,9 +62,8 @@ export default function StagePricingDetailed({
     return stageInfo.single;
   };
 
-  // Calculate discount for left side (Ultimate Advantage Package)
-  // Right side uses simple multiplication, so no discount calculation needed
-  const calculateLeftSideDiscount = () => {
+  // Calculate discount for right side (Custom Plan)
+  const calculateRightSideDiscount = () => {
     if (subjectCount === 0) return { amount: 0, percent: 0 };
 
     const individualTotal = subjectCount * stageInfo.single;
@@ -80,13 +85,10 @@ export default function StagePricingDetailed({
     return { amount: discountAmount, percent: discountPercent };
   };
 
-  const { amount: discountAmount, percent: discountPercent } = calculateLeftSideDiscount();
+  const { amount: discountAmount, percent: discountPercent } = calculateRightSideDiscount();
 
-  // Calculate left side price from static data based on selected subjects
-  let leftSidePrice = 0;
-  if (subjectCount === 1) leftSidePrice = stageInfo.single;
-  else if (subjectCount === 2) leftSidePrice = stageInfo.combo2;
-  else if (subjectCount === 3) leftSidePrice = stageInfo.combo3;
+  // Calculate final price after discount for right side
+  const finalPriceAfterDiscount = finalTotal - discountAmount;
 
   const getHeading = () => {
     if (subjectCount === 1) return "Single Subject Plan (Monthly Fee)";
@@ -173,37 +175,12 @@ export default function StagePricingDetailed({
                     <p className="mb-0">You Pay Only</p>
                   </div>
                   <h3 id="pyhs" className="mb-2">
-                    {subjectCount > 0 ? `₹${formatINR(leftSidePrice)}` : "—"}
+                    ₹{formatINR(ultimatePackagePrice)}
                   </h3>
-                  <div
-                    style={{
-                      height: "44px",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      className="d-flex justify-content-center align-items-center"
-                      style={{
-                        padding: "6px 16px",
-                        color: "#198754",
-                        opacity: subjectCount > 1 && discountAmount > 0 ? 1 : 0,
-                        transition: "opacity 0.3s ease",
-                      }}
-                    >
-                      <div style={{ fontSize: 14 }}>
-                        You save <strong>{discountPercent}%</strong> on
-                        this bundle
-                      </div>
-                      <div
-                        style={{ fontWeight: 700, color: "#01356C", minWidth: "80px", textAlign: "right" }}
-                      >
-                        - ₹{formatINR(discountAmount)}
-                      </div>
-                    </div>
-                  </div>
+                  <p>
+                    You save ₹{formatINR(ultimatePackageMonthlySavings)} every month (that&apos;s{" "}
+                    <span className="text-success">₹{formatINR(ultimatePackageYearlySavings)}</span> a year!)
+                  </p>
                 </div>
                 <button
                   className="btn-frd mt-3"
@@ -287,11 +264,11 @@ export default function StagePricingDetailed({
                   className="d-flex justify-content-between align-items-center"
                   style={{ padding: "0px 16px" }}
                 >
-                  <div style={{ color: "#6c757d" }}>Your Monthly Plan</div>
+                  <div style={{ color: "#6c757d" }}>Total</div>
 
                   <div
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: 700,
                       color: "#01356C",
                       minWidth: "80px",
@@ -304,9 +281,38 @@ export default function StagePricingDetailed({
                   </div>
                 </div>
 
+                <div
+                  style={{
+                    height: "44px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    className="d-flex justify-content-between align-items-center leading-none"
+                    style={{
+                      padding: "0px 16px",
+                      color: "#198754",
+                      opacity: discountAmount > 0 ? 1 : 0,
+                      transition: "opacity 0.3s ease",
+                    }}
+                  >
+                    <div style={{ fontSize: 13 }}>
+                      {discountPercent > 0 && (
+                        <>You save <strong>{discountPercent}%</strong> on this bundle</>
+                      )}
+                    </div>
+                    <div
+                      style={{ fontWeight: 700, color: "#198754", minWidth: "80px", textAlign: "right" }}
+                    >
+                      {discountAmount > 0 ? `- ₹${formatINR(discountAmount)}` : ""}
+                    </div>
+                  </div>
+                </div>
 
-
-                <div style={{ height: "13px", overflow: "hidden" }}>
+                <div style={{ height: "1px", overflow: "hidden" }}>
                   <hr
                     style={{
                       borderTop: "1px solid #e9eef3",
@@ -315,6 +321,27 @@ export default function StagePricingDetailed({
                       transition: "opacity 0.3s ease",
                     }}
                   />
+                </div>
+
+                <div
+                  className="d-flex justify-content-between align-items-center"
+                  style={{ padding: "0px 16px", marginTop: "0px" }}
+                >
+                  <div style={{ color: "#001F3F", fontWeight: 600, fontSize: 15 }}>Your Monthly Plan</div>
+
+                  <div
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 700,
+                      color: "#01356C",
+                      minWidth: "80px",
+                      textAlign: "right",
+                    }}
+                  >
+                    {subjectCount > 0
+                      ? `₹${formatINR(finalPriceAfterDiscount)}`
+                      : `—`}
+                  </div>
                 </div>
 
                 <div className="text-center mt-3">

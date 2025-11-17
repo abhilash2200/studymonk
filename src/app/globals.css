@@ -114,9 +114,9 @@ h3 {
 }
 
 .mob-banner h2 {
-  font-size: 22px !important;
+  font-size: 21px !important;
   font-family: "Gilroy-Bold" !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 15px !important;
   text-align: left !important;
 }
 
@@ -3161,7 +3161,7 @@ a {
 
 .gr-jg {
   background-color: #E4EF8C;
-  padding: 50px 50px;
+  padding: 60px 50px;
 }
 
 .twelvex {
@@ -3169,7 +3169,7 @@ a {
       rgba(204, 204, 204, 0.2) 0%,
       rgba(255, 255, 255, 0.8) 50%,
       rgba(153, 153, 153, 0.2) 100%);
-  padding: 20px 30px;
+  padding: 30px 30px;
   margin: auto;
   width: 500px;
 

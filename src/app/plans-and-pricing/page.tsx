@@ -85,11 +85,11 @@ export default function Page() {
                     <div
                         className="mob-banner d-flex d-md-none align-items-center"
                         style={{
-                            backgroundImage: "url('/assets/img/peer-mob.png')",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
+                            // backgroundImage: "url('/assets/img/peer-mob.png')",
+                            // backgroundSize: "cover",
+                            // backgroundPosition: "center",
                             // padding: "40px 20px",
-                            height: "400px",
+                            height: "200px",
                             position: "relative",
                             
                         }}
@@ -97,7 +97,8 @@ export default function Page() {
                         <div
                             style={{
                                 position: "absolute",
-                                bottom: "50px",
+                                bottom: "50%",
+                                transform: "translateY(50%)",
                                 left: "10px",
                                 right: "20px",
                                 color: "#fff",
@@ -106,7 +107,7 @@ export default function Page() {
                             }}
                         >
                             <h2 style={{ fontSize: "20px", fontWeight: "700", lineHeight: "1.3" }}>
-                                The Perfect <br />Balance of <br />Personal <br />Attention <br />and Peer <br />Collaboration.
+                                The Perfect Balance of Personal Attention and Peer Collaboration.
                             </h2>
 
                             <a href="#price">
